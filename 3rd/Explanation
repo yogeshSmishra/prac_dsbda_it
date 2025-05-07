@@ -1,0 +1,110 @@
+import pandas as pd
+df = pd.read_csv('Facebook.csv')
+df
+Explanation:
+
+This imports the pandas library as pd.
+
+Loads the dataset Facebook.csv into a DataFrame named df.
+
+python
+Copy code
+df.describe()
+Explanation:
+
+Returns summary statistics for numeric columns like count, mean, std, min, max, etc.
+
+python
+Copy code
+# First subset: Like and Share
+df_subset_1 = df[['like','share']]
+df_subset_1
+Explanation:
+
+Creates a new DataFrame df_subset_1 with only the 'like' and 'share' columns.
+
+python
+Copy code
+# second subset: Comment and Type
+df_subset_2 = df[['comment','Type']]
+df_subset_2
+Explanation:
+
+Creates another DataFrame df_subset_2 with 'comment' and 'Type' columns.
+
+python
+Copy code
+merged_data  = pd.merge(df_subset_2, df_subset_1, left_on='comment', right_on='like')
+merged_data
+Explanation:
+
+Merges df_subset_2 and df_subset_1 on comment and like columns.
+
+Only rows where comment == like will be included.
+
+python
+Copy code
+# Sorting merged_data in descending order wrt 'Like'
+merged_data.sort_values(by=['like'],ascending=False)
+Explanation:
+
+Sorts the merged data in descending order by the 'like' column.
+
+python
+Copy code
+# Method 1 Transposing data
+merged_data.transpose()
+Explanation:
+
+Transposes the DataFrame: rows become columns and columns become rows.
+
+python
+Copy code
+df.Type.unique()
+Explanation:
+
+Returns unique values from the 'Type' column, e.g., status, photo, video.
+
+python
+Copy code
+# Reshape
+# Comment is id_vars and Type is value_vars
+pd.melt(df, id_vars =['Type'], value_vars =['comment'])
+Explanation:
+
+Reshapes the DataFrame using melt.
+
+Keeps 'Type' as identifier and unpivots the 'comment' column into two columns: 'variable' and 'value'.
+
+📘 VIVA QUESTIONS & ANSWERS
+✅ On Pandas Basics
+Q: What is a DataFrame in pandas?
+A: It's a 2D labeled data structure, similar to a table or spreadsheet.
+
+Q: What does df.describe() do?
+A: It returns summary statistics of numerical columns.
+
+✅ On Subsetting and Merging
+Q: How do you select specific columns from a DataFrame?
+A: By using double square brackets, e.g., df[['like', 'share']].
+
+Q: What does pd.merge() do?
+A: It merges two DataFrames based on common columns or keys.
+
+Q: In your code, why was merge done on comment and like?
+A: To find rows where values in 'comment' match values in 'like'.
+
+✅ On Sorting and Transposing
+Q: What is the use of sort_values()?
+A: It sorts the rows of a DataFrame by specified columns.
+
+Q: What does transpose() do in pandas?
+A: It switches the rows and columns.
+
+✅ On Unique Values and Melting
+Q: What does df.Type.unique() return?
+A: An array of unique values in the 'Type' column.
+
+Q: Explain the use of pd.melt()?
+A: It reshapes the DataFrame by converting wide-form data into long-form, making it suitable for plotting or analysis.
+
