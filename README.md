@@ -3,7 +3,6 @@ IT dsbda Practical 2019 pattern
 <br>
 1.Design a distributed application using MapReduce(Using Java) which processes a log file of a system.List out the users who have logged for maximum period on the system. Use simple log file from the Internet and process it using a pseudo distribution mode on Hadoop platform.
 <br>
-
 2.Write an application using HiveQL for flight information system which will include
 a. Creating,Dropping, and altering Database tables.b. Creating an external Hive table.c. Load table with data, insert new values and field in the table, Join tables with Hive d. Create index on Flight Information Table e. Find the average departure delay per day in 2008
 <br>
